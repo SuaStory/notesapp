@@ -19,6 +19,7 @@ createBtn.addEventListener('click',function(){
 
     img.src = "images/delete.png";
     img.setAttribute("type","button");
+    img.setAttribute("tabindex","-1");
     notesContainer.appendChild(inputBox).appendChild(img);
     updateStorage();
 });
