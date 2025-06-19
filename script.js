@@ -25,9 +25,14 @@ createBtn.addEventListener('click',function(){
 
 notesContainer.addEventListener("click",function (e){
     if(e.target.tagName === "IMG"){
-        e.preventDefault();
+        const scrollY = window.scrollY;
         e.target.closest("p").remove();
         updateStorage();
+        window.scrollTo(0, scrollY);
+
+
+
+
     }else if(e.target.tagName === "P"){
         notes = document.querySelectorAll(".input-box")
         notes.forEach(function (nt){
