@@ -19,9 +19,15 @@ createBtn.addEventListener('click',function(){
 
     img.src = "images/delete.png";
     img.setAttribute("type","button");
-    img.setAttribute("tabindex","-1");
+    img.setAttribute("class","delete-btn");
     notesContainer.appendChild(inputBox).appendChild(img);
     updateStorage();
+});
+
+notesContainer.addEventListener("mousedown", function (e) {
+    if (e.target.classList.contains("delete-btn")) {
+        e.preventDefault(); // ← 포커스 자체를 막아줌 (모바일에서 키보드 안 뜸)
+    }
 });
 
 notesContainer.addEventListener("click",function (e){
@@ -29,7 +35,6 @@ notesContainer.addEventListener("click",function (e){
     //     e.target.closest("p").remove();
     //     updateStorage();
         if (e.target.tagName === "IMG") {
-            e.preventDefault();
             const p = e.target.closest("p");
         if (!p) return;
 
