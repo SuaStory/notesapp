@@ -28,6 +28,7 @@ notesContainer.addEventListener("click",function (e){
     //     e.target.closest("p").remove();
     //     updateStorage();
         if (e.target.tagName === "IMG") {
+            e.preventDefault();
             const p = e.target.closest("p");
         if (!p) return;
 
@@ -36,8 +37,8 @@ notesContainer.addEventListener("click",function (e){
     // 애니메이션 끝난 뒤 삭제
             setTimeout(() => {
                 p.remove();
-            updateStorage(); // 상태 저장
-            }, 300); // CSS에서 설정한 transition 시간과 같아야 함
+                updateStorage(); // 상태 저장
+    }, 300); // CSS에서 설정한 transition 시간과 같아야 함
     
     }else if(e.target.tagName === "P"){
         notes = document.querySelectorAll(".input-box")
