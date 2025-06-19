@@ -17,6 +17,8 @@ createBtn.addEventListener('click',function(){
     let img = document.createElement("img");
     inputBox.className = "input-box";
     inputBox.setAttribute("contenteditable", "true");
+    inputBox.setAttribute("inputmode","text");
+
     img.src = "images/delete.png";
     notesContainer.appendChild(inputBox).appendChild(img);
     updateStorage();
@@ -37,31 +39,12 @@ notesContainer.addEventListener("click",function (e){
     }
 })
 
-// document.addEventListener("keydown",function(event){
-//     if(event.key === "Enter"){
-//         document.execCommand("insertLineBreak");
-//         event.preventDefault();
-//     }
-// })
-
-notes.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-    event.preventDefault();
-
-    const selection = window.getSelection();
-    if (!selection.rangeCount) return;
-
-    const range = selection.getRangeAt(0);
-
-    // 줄바꿈 요소(<br>)를 생성하고 삽입
-    const br = document.createElement("br");
-    range.deleteContents();
-    range.insertNode(br);
-
-    // 커서를 새 줄 뒤에 놓기 위해 새로운 range 설정
-    range.setStartAfter(br);
-    range.collapse(true);
-    selection.removeAllRanges();
-    selection.addRange(range);
+document.addEventListener("keydown",function(event){
+    if(event.key === "Enter"){
+        document.execCommand("insertLineBreak");
+        event.preventDefault();
     }
-});
+})
+
+
+
