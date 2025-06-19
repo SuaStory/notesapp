@@ -25,6 +25,7 @@ createBtn.addEventListener('click',function(){
 
 notesContainer.addEventListener("click",function (e){
     if(e.target.tagName === "IMG"){
+        e.preventDefault();
         const scrollY = window.scrollY;
         e.target.closest("p").remove();
         updateStorage();
