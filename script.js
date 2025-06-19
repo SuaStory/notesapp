@@ -24,7 +24,7 @@ createBtn.addEventListener('click',function(){
 
 notesContainer.addEventListener("click",function (e){
     if(e.target.tagName === "IMG"){
-        e.target.parentElement.remove();
+        e.target.closest("p").remove();
         updateStorage();
     }else if(e.target.tagName === "P"){
         notes = document.querySelectorAll(".input-box")
@@ -37,9 +37,31 @@ notesContainer.addEventListener("click",function (e){
     }
 })
 
-document.addEventListener("keydown",function(event){
-    if(event.key === "Enter"){
-        document.execCommand("insertLineBreak");
-        event.preventDefault();
+// document.addEventListener("keydown",function(event){
+//     if(event.key === "Enter"){
+//         document.execCommand("insertLineBreak");
+//         event.preventDefault();
+//     }
+// })
+
+notes.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+    event.preventDefault();
+
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+
+    const range = selection.getRangeAt(0);
+
+    // 줄바꿈 요소(<br>)를 생성하고 삽입
+    const br = document.createElement("br");
+    range.deleteContents();
+    range.insertNode(br);
+
+    // 커서를 새 줄 뒤에 놓기 위해 새로운 range 설정
+    range.setStartAfter(br);
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
     }
-})
+});
