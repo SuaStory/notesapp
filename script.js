@@ -24,16 +24,21 @@ createBtn.addEventListener('click',function(){
 });
 
 notesContainer.addEventListener("click",function (e){
-    if(e.target.tagName === "IMG"){
-        e.preventDefault();
-        const scrollY = window.scrollY;
-        e.target.closest("p").remove();
-        updateStorage();
-        window.scrollTo(0, scrollY);
+    // if(e.target.tagName === "IMG"){
+    //     e.target.closest("p").remove();
+    //     updateStorage();
+        if (e.target.tagName === "IMG") {
+            const p = e.target.closest("p");
+        if (!p) return;
 
+            p.classList.add("removing"); // 애니메이션 시작
 
-
-
+    // 애니메이션 끝난 뒤 삭제
+            setTimeout(() => {
+                p.remove();
+            updateStorage(); // 상태 저장
+            }, 300); // CSS에서 설정한 transition 시간과 같아야 함
+    
     }else if(e.target.tagName === "P"){
         notes = document.querySelectorAll(".input-box")
         notes.forEach(function (nt){

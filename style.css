@@ -67,3 +67,9 @@
     cursor: pointer;
 
 }
+
+p.removing {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}
