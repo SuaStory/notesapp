@@ -25,6 +25,7 @@ createBtn.addEventListener('click',function(){
 
 notesContainer.addEventListener("click",function (e){
     if(e.target.tagName === "IMG"){
+        e.preventDefault();
         e.target.closest("p").remove();
         updateStorage();
     }else if(e.target.tagName === "P"){
