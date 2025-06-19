@@ -4,12 +4,10 @@ let notes = document.querySelectorAll(".input-box");
 
 function showNotes() {
     notesContainer.innerHTML = localStorage.getItem('note');
-    
 }
 showNotes();
 function updateStorage() {
     localStorage.setItem("note",notesContainer.innerHTML);
-    
 }
 
 createBtn.addEventListener('click',function(){
@@ -20,6 +18,7 @@ createBtn.addEventListener('click',function(){
     inputBox.setAttribute("inputmode","text");
 
     img.src = "images/delete.png";
+    img.setAttribute("type","button");
     notesContainer.appendChild(inputBox).appendChild(img);
     updateStorage();
 });
@@ -35,7 +34,6 @@ notesContainer.addEventListener("click",function (e){
                 updateStorage();
             }
         })
-
     }
 })
 
